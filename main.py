@@ -28,14 +28,12 @@ if __name__ == '__main__':
         Products_for_category[item['name']] = Product_list
     # Расчет количества категорий
     Category_cont = counter_category(Shop_category)
-    # Расчет количества продуктов
-    Product_cont_list = counter_product(Products)
     # Запись количества категорий в объект категория
     for item in Shop_category:
         # Расчитали количество категорий и записали их в объекты
         item.category_count = Category_cont
         # Записали список продуктов в каждый объект
-        item.product_list = Product_cont_list
+        item.product_list = Products_for_category[item.name]
     # Поиск и запись количества продуктов в объект категория
     for item in Shop_category:
         summ_prod = 0
@@ -43,4 +41,5 @@ if __name__ == '__main__':
             if item2.category_name == item.name:
                 summ_prod += item2.quantity
         item.product_count = summ_prod
+
 
