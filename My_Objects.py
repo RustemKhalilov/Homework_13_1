@@ -1,10 +1,12 @@
 class Category:
+    category_count = 0
+    product_count = 0
+    product_list = {}
+
     def __init__(self, name: str, description: str, number_of_categories=-2115,
                  total_number_of_unique_products=-2116):
         self.name = name
         self.description = description
-        self.category_count = 0
-        self.product_count = 0
         self.number_of_categories = number_of_categories
         self.total_number_of_unique_product = total_number_of_unique_products
 
@@ -22,5 +24,3 @@ class Product:
 
     def __repr__(self):
         return f'{self.name} \n  {self.description} \n {self.price} \n {self.quantity} \n {self.category_name}'
-
-
