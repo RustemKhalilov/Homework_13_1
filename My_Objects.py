@@ -2,10 +2,10 @@ class Category:
     category_count = 0
     product_count = 0
 
-    def __init__(self, name: str, description: str):
+    def __init__(self, name: str, description: str, products: list = None):
         self.name = name
         self.description = description
-        self.__products = []
+        self.__products = products
         Category.category_count += 1
 
     def product_conter(self):
@@ -29,19 +29,20 @@ class Category:
     @property
     def products(self):
         """
-        Метод возвращает список товаров
-        """
-        return self.__products
-
-    @property
-    def price_list(self):
-        """
         Метод выводит на печать остаток продуктов
         """
         result = ''
         for item in self.__products:
             result += f'{item["name"]}, {item["price"]} руб. Остаток {item["quantity"]} шт.\n'
         return result
+
+
+    def get_products_list(self):
+        """
+        Метод возвращает список продуктов
+        """
+        return self.__products
+
 
 class Product:
     def __init__(self, name: str, description: str, price: float, quantity: float):
@@ -74,7 +75,6 @@ class Product:
         if self.__price <= 0:
             print("Цена не корректная")
         else:
-            #print(f'{self.__price} руб.')
             return self.__price
 
     @price.setter

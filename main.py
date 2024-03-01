@@ -12,15 +12,16 @@ if __name__ == '__main__':
     Shop_category = []
     Products = []
     for item in dictionary_data:
-        Category_prod = Category(item['name'], item['description'])
+        product_list = []
         for item2 in item['products']:
             # Создаем объект продукт
             Product_prod = Product(item2['name'], item2['description'], item2['price'], item2['quantity'])
+            product_list.append({'name': item2['name'], 'quantity': item2['quantity'], 'price': item2['price']})
             Products.append(Product_prod)
-            # Добавляем продукт в список продуктов
-            Category_prod.add_product(Product_prod)
-            # Счетчик продуктов
-            Category_prod.product_conter()
+        # Создаем категорию продукты
+        Category_prod = Category(item['name'], item['description'], product_list)
+        # Счетчик продуктов
+        Category_prod.product_conter()
         Shop_category.append(Category_prod)
 
     new_product = Product.add_product('Xiaomi Redmi Note 11', '256GB, Серый цвет, 200MP камера', 35200, 350)
@@ -31,7 +32,7 @@ if __name__ == '__main__':
 
     # Добавление продукта в список продуктов
     for item in Shop_category:
-        product_list = item.products
+        product_list = item.get_products_list()
         for item_2 in product_list:
             if item_2['name'] == new_product.name:
                 item.add_product(new_product)
@@ -39,6 +40,6 @@ if __name__ == '__main__':
     # Распечатка цен на товары
     for item in Shop_category:
         #Работа Gettera Category
-        print(item.price_list)
+        print(item.products)
 
-i = 0
+
