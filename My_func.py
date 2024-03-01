@@ -1,7 +1,6 @@
 import os.path
 import json
-from My_Objects import Category
-from My_Objects import Product
+
 
 
 def load_json_from_file(path1, file_name):
