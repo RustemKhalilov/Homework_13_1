@@ -28,15 +28,18 @@ class Category:
         """
         Метод для добавления списка продуктов в приватное свойство __products
         """
-        id_product = 0
-        for item in self.__products:
-            if item['name'] == product_in.name:
-                item['quantity'] = item['quantity'] + product_in.quantity
-                id_product = 1
-        if id_product == 0:
-            self.__products.append(
-                {'name': product_in.name, 'quantity': product_in.quantity, 'price': product_in.price})
-            Category.product_count += len(self.__products)
+        if isinstance(product_in, Product):  # Проверка принадлежности к классу Product
+            id_product = 0
+            for item in self.__products:
+                if item['name'] == product_in.name:
+                    item['quantity'] = item['quantity'] + product_in.quantity
+                    id_product = 1
+            if id_product == 0:
+                self.__products.append(
+                    {'name': product_in.name, 'quantity': product_in.quantity, 'price': product_in.price})
+                Category.product_count += len(self.__products)
+        else:
+            print("Добавлять можно только класс Product")
 
     @property
     def products(self):
@@ -110,10 +113,53 @@ class ProductIterator:
 
     def __next__(self):
         if self.current_value + 1 <= len(self.In_categ.get_products_list()) - 1:
-           self.current_value = self.current_value + 1
-           dict = self.In_categ.get_products_list()[self.current_value]
-           return f"{dict['name']}, Цена {dict['price']} руб., Остаток {dict['quantity']} шт."
+            self.current_value = self.current_value + 1
+            dict = self.In_categ.get_products_list()[self.current_value]
+            return f"{dict['name']}, Цена {dict['price']} руб., Остаток {dict['quantity']} шт."
         else:
             raise StopIteration
 
 
+class ProductChildren(Product):
+    """
+    Промежуточный класс с общим свойством color
+    """
+
+    def __init__(self, name: str, description: str, price: float, quantity: float, color: str):
+        super().__init__(name, description, price, quantity)
+        self.color = color
+
+    def __add__(self, two_obj):
+        if isinstance(two_obj, type(self)):
+            return self.quantity * self.price + two_obj.quantity * two_obj.price
+        else:
+            return 'Данные товары складывать нельзя'
+
+
+class ProductSmartphone(ProductChildren):
+    """
+    Класс для продукта смартфон
+    """
+
+    def __init__(self, name: str, description: str, price: float, quantity: float, efficiency: float,
+                 model: str, total_memory: float, color: str):
+        super().__init__(name, description, price, quantity, color)
+        self.efficiency = efficiency
+        self.model = model
+        self.total_memory = total_memory
+
+
+class ProductGrass(ProductChildren):
+    """
+    Класс для продукта трава газонная
+    """
+
+    def __init__(self, name: str, description: str, price: float, quantity: float, country_of_origin: str,
+                 germination_period: str, color: str):
+        super().__init__(name, description, price, quantity, color)
+        self.country_of_origin = country_of_origin
+        self.germination_period = germination_period
+
+
+class noProduct:
+    class_ID = "Я тестовый класс"
