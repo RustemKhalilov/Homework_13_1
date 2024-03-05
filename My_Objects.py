@@ -69,7 +69,11 @@ class Product:
         return f'{self.name}, {self.price}. руб. Остаток: {self.quantity} шт.'
 
     def __add__(self, two_obj):
-        return self.quantity * self.price + two_obj.quantity * two_obj.price
+        # Проверка принадлежности складываемого продукта классу Product
+        if isinstance(two_obj, Product):
+            return self.quantity * self.price + two_obj.quantity * two_obj.price
+        else:
+            return 'Данные товары складывать нельзя'
 
     @classmethod
     def add_product(cls, name: str, description: str, price: float, quantity: float):

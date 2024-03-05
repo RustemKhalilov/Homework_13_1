@@ -6,7 +6,6 @@ from My_Objects import noProduct
 from My_Objects import ProductIterator
 from My_func import load_json_from_file
 
-
 if __name__ == '__main__':
     # Чтение данных из json
     path1 = "operations"
@@ -59,25 +58,29 @@ if __name__ == '__main__':
     Product_temp = Products[0] + Products[1]
     print('Работа метода add Product')
     print(Product_temp)
-    #Работа итератора
+    # Работа итератора
     print('Работа итератора')
     Prod_iter = ProductIterator(Shop_category[0])
     for item in Prod_iter:
         print(item)
 
     Smartfon_1 = ProductSmartphone('Xiaomi Redmi Note 12', '256GB, Серый цвет, 200MP камера',
-                                 42200, 150, 1.8, 'Xiaomi Redmi Note 12', 256, 'черный')
+                                   42200, 150, 1.8, 'Xiaomi Redmi Note 12', 256, 'черный')
 
     Smartfon_2 = ProductSmartphone('Xiaomi Redmi Note 13', '512GB, Серый цвет, 200MP камера',
-                                 65200, 100, 2.2, 'Xiaomi Redmi Note 13', 512, 'белый')
+                                   65200, 100, 2.2, 'Xiaomi Redmi Note 13', 512, 'белый')
 
     Grass_1 = ProductGrass('Сельдерей', 'Двухлетняя овощная культура', 23, 352, 'Россия', 3, 'зеленый')
     Grass_2 = ProductGrass('Петрушка', 'Вид цветковых растений', 35, 150, 'Россия', 3, 'зеленый')
 
     print(f'Результат сложения одинаковых товаров = {Smartfon_1 + Smartfon_2}')
-    print(f'Результат сложения разных товаров = {Smartfon_1+Grass_1}')
-    #Реализация проверки класса Product при добавлении в категорию
+    print(f'Результат сложения разных товаров = {Smartfon_1 + Grass_1}')
+    # Реализация проверки класса Product при добавлении в категорию
     TempProduct = noProduct
     Shop_category[0].add_product(TempProduct)
+    # Реализация складывания продуктов
+    print(Products[0] + Products[2])
+    # Проверка пренадлежности к классу
+    print(Products[0] + TempProduct)
 
-i = 0 #Точка останова для отладки
+i = 0  # Точка останова для отладки
