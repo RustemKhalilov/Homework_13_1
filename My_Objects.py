@@ -70,7 +70,7 @@ class Product:
 
     def __add__(self, two_obj):
         # Проверка принадлежности складываемого продукта классу Product
-        if isinstance(two_obj, Product):
+        if type(self) == type(two_obj):
             return self.quantity * self.price + two_obj.quantity * two_obj.price
         else:
             return 'Данные товары складывать нельзя'
