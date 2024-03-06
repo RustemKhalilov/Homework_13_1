@@ -1,3 +1,6 @@
+from abc import ABC, abstractmethod
+
+
 class Category:
     category_count = 0
     product_count = 0
@@ -59,11 +62,12 @@ class Category:
 
 
 class Product:
-    def __init__(self, name: str, description: str, price: float, quantity: float):
+    def __init__(self, name: str, description: str, price: float, quantity: float, color: str):
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+        self.color = color
 
     def __str__(self):
         return f'{self.name}, {self.price}. руб. Остаток: {self.quantity} шт.'
@@ -76,8 +80,8 @@ class Product:
             return 'Данные товары складывать нельзя'
 
     @classmethod
-    def add_product(cls, name: str, description: str, price: float, quantity: float):
-        return cls(name, description, price, quantity)
+    def add_product(cls, name: str, description: str, price: float, quantity: float, color: str):
+        return cls(name, description, price, quantity, color)
 
     def add_new_product(self, new_product):
         """
@@ -124,45 +128,30 @@ class ProductIterator:
             raise StopIteration
 
 
-class ProductChildren(Product):
-    """
-    Промежуточный класс с общим свойством color
-    """
-
-    def __init__(self, name: str, description: str, price: float, quantity: float, color: str):
-        super().__init__(name, description, price, quantity)
-        self.color = color
-
-    def __add__(self, two_obj):
-        if isinstance(two_obj, type(self)):
-            return self.quantity * self.price + two_obj.quantity * two_obj.price
-        else:
-            return 'Данные товары складывать нельзя'
-
-
-class ProductSmartphone(ProductChildren):
+class ProductSmartphone(Product):
     """
     Класс для продукта смартфон
     """
 
-    def __init__(self, name: str, description: str, price: float, quantity: float, efficiency: float,
-                 model: str, total_memory: float, color: str):
+    def __init__(self, name: str, description: str, price: float, quantity: float, color: str, efficiency: float,
+                 model: str, total_memory: float):
         super().__init__(name, description, price, quantity, color)
         self.efficiency = efficiency
         self.model = model
         self.total_memory = total_memory
 
 
-class ProductGrass(ProductChildren):
+class ProductGrass(Product):
     """
     Класс для продукта трава газонная
     """
 
-    def __init__(self, name: str, description: str, price: float, quantity: float, country_of_origin: str,
-                 germination_period: str, color: str):
+    def __init__(self, name: str, description: str, price: float, quantity: float, color: str, country_of_origin: str,
+                 germination_period: int):
         super().__init__(name, description, price, quantity, color)
         self.country_of_origin = country_of_origin
         self.germination_period = germination_period
+
 
 
 class noProduct:

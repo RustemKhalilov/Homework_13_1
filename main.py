@@ -19,7 +19,7 @@ if __name__ == '__main__':
         product_list = []
         for item2 in item['products']:
             # Создаем объект продукт
-            Product_prod = Product(item2['name'], item2['description'], item2['price'], item2['quantity'])
+            Product_prod = Product(item2['name'], item2['description'], item2['price'], item2['quantity'], 'nocolor')
             # Проверка метода str
             print(f'Проверка метода Str для Product {Product_prod}')
             product_list.append({'name': item2['name'], 'quantity': item2['quantity'], 'price': item2['price']})
@@ -32,7 +32,7 @@ if __name__ == '__main__':
         # Category_prod.product_conter()
         Shop_category.append(Category_prod)
 
-    new_product = Product.add_product('Xiaomi Redmi Note 11', '256GB, Серый цвет, 200MP камера', 35200, 350)
+    new_product = Product.add_product('Xiaomi Redmi Note 11', '256GB, Серый цвет, 200MP камера', 35200, 350, 'nocolor')
     # Работа gettera Product
     print(f'{new_product.price} руб.')
     # Работа сетера Product
@@ -65,13 +65,13 @@ if __name__ == '__main__':
         print(item)
 
     Smartfon_1 = ProductSmartphone('Xiaomi Redmi Note 12', '256GB, Серый цвет, 200MP камера',
-                                   42200, 150, 1.8, 'Xiaomi Redmi Note 12', 256, 'черный')
+                                   42200, 150, 'черный', 1.8, 'Xiaomi Redmi Note 12', 256)
 
     Smartfon_2 = ProductSmartphone('Xiaomi Redmi Note 13', '512GB, Серый цвет, 200MP камера',
-                                   65200, 100, 2.2, 'Xiaomi Redmi Note 13', 512, 'белый')
+                                   65200, 100, 'белый', 2.2, 'Xiaomi Redmi Note 13', 512)
 
-    Grass_1 = ProductGrass('Сельдерей', 'Двухлетняя овощная культура', 23, 352, 'Россия', 3, 'зеленый')
-    Grass_2 = ProductGrass('Петрушка', 'Вид цветковых растений', 35, 150, 'Россия', 3, 'зеленый')
+    Grass_1 = ProductGrass('Сельдерей', 'Двухлетняя овощная культура', 23, 352, 'зеленый', 'Россия', 3)
+    Grass_2 = ProductGrass('Петрушка', 'Вид цветковых растений', 35, 150, 'зеленый', 'Россия', 3)
 
     print(f'Результат сложения одинаковых товаров = {Smartfon_1 + Smartfon_2}')
     print(f'Результат сложения разных товаров = {Smartfon_1 + Grass_1}')
