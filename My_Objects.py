@@ -61,7 +61,32 @@ class Category:
         return self.__products
 
 
-class Product:
+class ProductBase(ABC):
+    @abstractmethod
+    def add_product(self):
+        pass
+
+    @abstractmethod
+    def add_new_product(self):
+        pass
+
+    @property
+    @abstractmethod
+    def price(self):
+        pass
+
+    @price.setter
+    @abstractmethod
+    def price(self, price):
+        pass
+
+
+class MixClass:
+    def __repr__(self):
+        return(f"{type(self).__name__}('{self.name}' '{self.description}',{self.price}, {self.quantity})")
+
+
+class Product(MixClass, ProductBase):
     def __init__(self, name: str, description: str, price: float, quantity: float, color: str):
         self.name = name
         self.description = description
@@ -151,7 +176,6 @@ class ProductGrass(Product):
         super().__init__(name, description, price, quantity, color)
         self.country_of_origin = country_of_origin
         self.germination_period = germination_period
-
 
 
 class noProduct:

@@ -67,6 +67,8 @@ if __name__ == '__main__':
     Smartfon_1 = ProductSmartphone('Xiaomi Redmi Note 12', '256GB, Серый цвет, 200MP камера',
                                    42200, 150, 'черный', 1.8, 'Xiaomi Redmi Note 12', 256)
 
+    #Проверка работы Миксина
+    print(repr(Smartfon_1))
     Smartfon_2 = ProductSmartphone('Xiaomi Redmi Note 13', '512GB, Серый цвет, 200MP камера',
                                    65200, 100, 'белый', 2.2, 'Xiaomi Redmi Note 13', 512)
 
