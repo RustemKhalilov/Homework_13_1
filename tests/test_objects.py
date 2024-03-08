@@ -1,7 +1,7 @@
 import pytest
 
-from My_Objects import Category
-from My_Objects import Product
+from my_objects import Category
+from my_objects import Product
 
 
 

@@ -1,10 +1,10 @@
-from My_Objects import Category
-from My_Objects import Product
-from My_Objects import ProductSmartphone
-from My_Objects import ProductGrass
-from My_Objects import noProduct
-from My_Objects import ProductIterator
-from My_func import load_json_from_file
+from my_objects import Category
+from my_objects import Product
+from my_objects import ProductSmartphone
+from my_objects import ProductGrass
+from my_objects import noProduct
+from my_objects import ProductIterator
+from my_func import load_json_from_file
 
 if __name__ == '__main__':
     # Чтение данных из json
