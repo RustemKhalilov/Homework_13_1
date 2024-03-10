@@ -67,7 +67,7 @@ if __name__ == '__main__':
     Smartfon_1 = ProductSmartphone('Xiaomi Redmi Note 12', '256GB, Серый цвет, 200MP камера',
                                    42200, 150, 'черный', 1.8, 'Xiaomi Redmi Note 12', 256)
 
-    #Проверка работы Миксина
+    # Проверка работы Миксина
     print(repr(Smartfon_1))
     Smartfon_2 = ProductSmartphone('Xiaomi Redmi Note 13', '512GB, Серый цвет, 200MP камера',
                                    65200, 100, 'белый', 2.2, 'Xiaomi Redmi Note 13', 512)
@@ -84,5 +84,14 @@ if __name__ == '__main__':
     print(Products[0] + Products[2])
     # Проверка пренадлежности к классу
     print(Products[0] + TempProduct)
+
+    #Проверка вычисления средней цены методом average_price
+    my_average_price = Shop_category[0].average_price()
+    # Проверка Exception в Category
+    new_Category = Category('Электроиструменты', 'Угловая шлифовальная машинка', [])
+    my_average_price = new_Category.average_price()
+    # Провека работы Exception
+    Grass_3 = ProductGrass('Лук', 'Многолетнее травянистое растение', 25, 0, 'зеленый', 'Россия', 2)
+    new_product = Product.add_product('Xiaomi Redmi Note 11', '256GB, Серый цвет, 200MP камера', 35200, 0, 'nocolor')
 
 i = 0  # Точка останова для отладки

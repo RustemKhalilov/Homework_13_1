@@ -44,6 +44,20 @@ class Category:
         else:
             print("Добавлять можно только класс Product")
 
+    def average_price(self):
+        """
+        Метод для вычисления средней цены из приватного списка товаров
+        """
+        try:
+            summ = 0
+            for item in self.__products:
+                summ += item['price']
+            summ = summ / len(self.__products)
+        except ZeroDivisionError:
+            return 0
+        else:
+            return summ
+
     @property
     def products(self):
         """
@@ -83,7 +97,7 @@ class ProductBase(ABC):
 
 class MixClass:
     def __repr__(self):
-        return(f"{type(self).__name__}('{self.name}' '{self.description}',{self.price}, {self.quantity})")
+        return (f"{type(self).__name__}('{self.name}' '{self.description}',{self.price}, {self.quantity})")
 
 
 class Product(MixClass, ProductBase):
@@ -92,6 +106,8 @@ class Product(MixClass, ProductBase):
         self.description = description
         self.__price = price
         self.quantity = quantity
+        if quantity <= 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         self.color = color
 
     def __str__(self):
@@ -100,12 +116,16 @@ class Product(MixClass, ProductBase):
     def __add__(self, two_obj):
         # Проверка принадлежности складываемого продукта классу Product
         if type(self) == type(two_obj):
+            if two_obj.quantity <= 0:
+                raise ValueError("Товар с нулевым количеством не может быть добавлен")
             return self.quantity * self.price + two_obj.quantity * two_obj.price
         else:
             return 'Данные товары складывать нельзя'
 
     @classmethod
     def add_product(cls, name: str, description: str, price: float, quantity: float, color: str):
+        if quantity <= 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         return cls(name, description, price, quantity, color)
 
     def add_new_product(self, new_product):
@@ -113,6 +133,9 @@ class Product(MixClass, ProductBase):
        Метод принимает на вход товар и проверяет на совпадение
         """
         # Если имена совпадают то мы складываем товары по количеству
+        #Проверка на количество товара
+        if new_product.quantity <= 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         if new_product.name == self.name:
             self.quantity = self.quantity + new_product.quantity
             if self.__price < new_product.price:
